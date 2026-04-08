@@ -252,7 +252,7 @@ body {
   margin-top: 5mm; /* Reduced from 10mm */
   display: flex;
   justify-content: flex-end;
-  gap: 20mm;
+  gap: 5mm; /* Reduced gap from 20mm to 5mm to bring stamp closer */
   align-items: flex-end;
   break-inside: avoid; /* Prevent page break between sig and stamp */
   page-break-inside: avoid;
