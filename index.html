@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CodTech Invoice Generator</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+</head>
+<body>
+
+    <!-- 🔐 Login -->
+    <section id="auth-page" class="no-print">
+        <div style="background: white; padding: 40px; border-radius: 12px; width: 350px; text-align: center;">
+            <h2 style="margin-bottom: 20px; color: #e35a1a;">CODTECH LOGIN</h2>
+            <form id="login-form">
+                <input type="email" id="email" placeholder="harishneela71@gmail.com" style="width: 100%; padding: 12px; margin-bottom: 10px; border: 1px solid #ccc; border-radius: 4px;" required>
+                <input type="password" id="password" placeholder="4666" style="width: 100%; padding: 12px; margin-bottom: 20px; border: 1px solid #ccc; border-radius: 4px;" required>
+                <button type="submit" class="btn" style="width: 100%;">LOGIN</button>
+                <p id="login-error" style="color: red; margin-top: 10px; display: none;">Invalid Login</p>
+            </form>
+        </div>
+    </section>
+
+    <!-- 📝 Input Form -->
+    <section id="form-page" class="no-print" style="display: none;">
+        <div class="form-header">
+            <h3>CODTECH INVOICE GENERATOR</h3>
+            <button class="btn" onclick="localStorage.clear(); location.reload()" style="background: #333;">Logout</button>
+        </div>
+
+        <div class="input-grid">
+            <div class="form-group">
+                <label>Client Name</label>
+                <input type="text" id="client-name" placeholder="Enter Client Name">
+            </div>
+            <div class="form-group">
+                <label>Brand Name</label>
+                <input type="text" id="brand-name" placeholder="Enter Brand Name">
+            </div>
+            <div class="form-group" style="grid-column: span 2;">
+                <label>Project Requirement</label>
+                <textarea id="project-requirement" rows="2"></textarea>
+            </div>
+            <div class="form-group">
+                <label>Paid Payment</label>
+                <input type="number" id="paid-payment" value="0">
+            </div>
+            <div class="form-group">
+                <label>GST Status</label>
+                <input type="text" id="gst-info" placeholder="e.g., GST Included">
+            </div>
+        </div>
+
+        <h4 style="margin: 20px 0 10px; color: var(--primary);">PRICE BREAKDOWN</h4>
+        <div class="input-grid">
+            <div class="form-group"><label>Website Design</label><input type="number" class="price-input" id="cost-website" value="0"></div>
+            <div class="form-group"><label>Android App Dev</label><input type="number" class="price-input" id="cost-android" value="0"></div>
+            <div class="form-group"><label>iOS App Dev</label><input type="number" class="price-input" id="cost-ios" value="0"></div>
+            <div class="form-group"><label>iOS Store Fees</label><input type="number" class="price-input" id="cost-ios-store" value="0"></div>
+            <div class="form-group"><label>Android Store Fees</label><input type="number" class="price-input" id="cost-android-store" value="0"></div>
+            <div class="form-group"><label>Cloud & Hosting</label><input type="number" class="price-input" id="cost-cloud" value="0"></div>
+            <div class="form-group"><label>Domain Fees</label><input type="number" class="price-input" id="cost-domain" value="0"></div>
+        </div>
+
+        <div class="form-group" style="margin-top: 20px;">
+            <label>Notes</label>
+            <textarea id="notes" placeholder="Any additional notes..."></textarea>
+        </div>
+
+        <button class="btn" id="generate-btn" style="width: 100%; margin-top: 20px;">GENERATE INVOICE</button>
+    </section>
+
+    <!-- 📄 Invoice Preview -->
+    <section id="preview-page" style="display: none;">
+        <div class="no-print" style="max-width: 210mm; margin: 0 auto 20px; display: flex; justify-content: flex-end; gap: 10px;">
+            <button class="btn" style="background: #333;" onclick="document.getElementById('form-page').style.display='block'; document.getElementById('preview-page').style.display='none'">← Back to Edit</button>
+            <button class="btn" id="download-btn">Download PDF</button>
+        </div>
+
+        <div id="invoice-to-print" class="invoice-container">
+            <!-- Header Branding -->
+            <div class="header-top">
+                <div class="header-logo" id="preview-logo"></div>
+                <div style="text-align: right;">
+                    <p>CIN: UG2099TS2023PTC179813</p>
+                    <p>GSTIN: 36AALCC4967E1ZE</p>
+                </div>
+            </div>
+
+            <div class="header-info-row">
+                <p>Plot No. 89, Chyahtnaya Hills, Opp. Vinayaka Manda Pamu, Meerpet, Hyderabad - 500097</p>
+                <div style="display: flex; justify-content: space-between; margin-top: 2mm;">
+                    <span>Phone: 7036228278 | Email: info@cdtechitsolutions.com | Website: www.codtechitsolutions.com</span>
+                    <span style="font-weight: bold;">PAN: AALCC4967E</span>
+                </div>
+            </div>
+
+            <div class="invoice-title-bar">
+                <h1>INVOICE</h1>
+            </div>
+
+            <!-- Bill To Section -->
+            <div class="content-box">
+                <div class="section-header-grey">
+                    <div class="section-header-slanted" style="background-color: #333;">BILL TO:</div>
+                </div>
+                <div class="bill-grid">
+                    <div class="col">
+                        <div class="bill-item"><label>Client Name :</label> <span id="p-client-name"></span></div>
+                        <div class="bill-item"><label>Brand Name :</label> <span id="p-brand-name"></span></div>
+                        <div class="bill-item"><label>Project Requirement :</label> <span id="p-project-req"></span></div>
+                    </div>
+                    <div class="col">
+                        <div class="bill-item"><label>Next Total Payment :</label> <span id="p-next-payment"></span></div>
+                        <div class="bill-item"><label>Paid Payment :</label> <span id="p-paid-payment"></span></div>
+                        <div class="bill-item"><label>Total Due :</label> <span id="p-total-due"></span></div>
+                        <div class="bill-item"><label>GST Included :</label> <span id="p-gst-status"></span></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Price Breakdown Section -->
+            <div class="content-box" style="border: none;">
+                <div class="section-header-grey">
+                    <div class="section-header-slanted" style="background-color: #333;">PRICE BREAKDOWN</div>
+                </div>
+                <table class="price-table">
+                    <thead>
+                        <tr>
+                            <th>Description</th>
+                            <th>Amount</th>
+                        </tr>
+                    </thead>
+                    <tbody id="p-table-body"></tbody>
+                </table>
+            </div>
+
+            <!-- Note Section -->
+            <div class="notes-container">
+                <p style="font-size: 10pt;"><span style="font-weight: bold;">NOTE: </span><span id="p-notes-display"></span></p>
+            </div>
+
+            <!-- Footer -->
+            <div class="footer-row">
+                <div class="signature-box">
+                    <div id="preview-sig"></div>
+                    <p class="sig-name">N. Harish</p>
+                    <p class="sig-label">Authorized Signatory</p>
+                </div>
+                <div class="stamp-box" id="preview-stamp"></div>
+            </div>
+        </div>
+    </section>
+
+    <script src="assets.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>

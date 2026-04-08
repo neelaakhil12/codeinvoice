@@ -1,0 +1,301 @@
+/* 
+  CodTech Invoice - Exact Layout match
+  Primary: #e35a1a (Vibrant Orange)
+  Secondary: #333333 (Dark Grey)
+*/
+
+:root {
+  --primary: #e35a1a;
+  --secondary: #333333;
+  --light-grey: #f0f0f0;
+  --mid-grey: #dcdcdc;
+  --border: #ccc;
+  --font-family: 'Inter', sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: var(--font-family);
+}
+
+body {
+  background-color: #f5f5f5;
+  color: #000;
+}
+
+/* Page Control */
+#auth-page, #form-page, #preview-page {
+  padding: 20px;
+}
+
+#auth-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: #111;
+}
+
+/* Generator Form UI (Dashboard) */
+#form-page {
+  max-width: 900px;
+  margin: 0 auto;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+.form-header {
+  border-bottom: 2px solid var(--primary);
+  margin-bottom: 25px;
+  padding-bottom: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.input-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+.form-group label {
+  display: block;
+  font-weight: bold;
+  font-size: 0.85rem;
+  margin-bottom: 5px;
+}
+
+.form-group input, .form-group textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.btn {
+  padding: 12px 24px;
+  background-color: var(--primary);
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: opacity 0.2s;
+}
+
+.btn:hover {
+  opacity: 0.9;
+}
+
+/* 📄 EXPORT TEMPLATE (PRECISE MATCH) */
+.invoice-container {
+  width: 210mm; /* A4 width */
+  min-height: 297mm; /* A4 height */
+  margin: 0 auto;
+  background: white;
+  padding: 15mm;
+  position: relative;
+  border: 1px solid #eee;
+}
+
+.header-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 5mm;
+}
+
+.header-logo img {
+  height: 22mm;
+}
+
+.header-info-row {
+  font-size: 9pt;
+  line-height: 1.4;
+  margin-bottom: 5mm;
+}
+
+.info-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  font-size: 8pt;
+}
+
+.invoice-title-bar {
+  background-color: var(--primary);
+  color: white;
+  text-align: center;
+  padding: 5mm;
+  margin-bottom: 10mm;
+}
+
+.invoice-title-bar h1 {
+  font-size: 28pt;
+  margin: 0;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+/* Boxed sections with slanted headers */
+.content-box {
+  border: 1px solid var(--border);
+  margin-bottom: 10mm;
+  position: relative;
+}
+
+.section-header-slanted {
+  background-color: var(--secondary);
+  color: white;
+  font-weight: bold;
+  padding: 2mm 5mm;
+  display: inline-block;
+  clip-path: polygon(0% 0%, 90% 0%, 100% 100%, 0% 100%);
+  min-width: 40mm;
+  text-transform: uppercase;
+  font-size: 11pt;
+}
+
+.section-header-grey {
+    background-color: #b0b8c4;
+    color: white;
+    width: 100%;
+    padding: 0mm 5mm;
+    margin-bottom: 0;
+}
+
+.bill-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  padding: 0;
+}
+
+.bill-grid .col {
+  padding: 4mm 5mm;
+}
+
+.bill-grid .col:first-child {
+  border-right: 1px solid var(--border);
+}
+
+.bill-item {
+  margin-bottom: 4mm;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 1mm;
+  display: flex;
+  align-items: flex-end;
+}
+
+.bill-item label {
+  font-size: 9pt;
+  font-weight: normal;
+  color: #333;
+  margin-right: 5px;
+  white-space: nowrap;
+}
+
+.bill-item span {
+  font-size: 10pt;
+  font-weight: 500;
+  width: 100%;
+}
+
+/* Price Breakdown Table */
+.price-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.price-table thead tr {
+  background-color: var(--primary);
+  color: white;
+}
+
+.price-table th {
+  padding: 3mm;
+  text-align: left;
+  border: 1px solid #fff;
+  font-size: 10pt;
+  text-transform: uppercase;
+}
+
+.price-table td {
+  padding: 3mm;
+  border: 1px solid var(--border);
+  font-size: 9pt;
+}
+
+.price-table td:last-child, .price-table th:last-child {
+  text-align: center;
+  width: 40mm;
+}
+
+/* Notes section */
+.notes-container {
+    margin-top: 10mm;
+}
+.note-line {
+    border-bottom: 1px solid #ddd;
+    height: 8mm;
+    margin-bottom: 2mm;
+}
+
+/* Footer Section */
+.footer-row {
+  margin-top: 20mm;
+  display: flex;
+  justify-content: flex-end;
+  gap: 20mm;
+  align-items: flex-end;
+}
+
+.stamp-box img {
+    height: 35mm;
+}
+
+.signature-box {
+    text-align: right;
+    min-width: 50mm;
+}
+
+.signature-img {
+    height: 55mm; /* Increased further to 55mm */
+    display: block;
+    margin-left: auto;
+    margin-right: -10mm;
+    margin-bottom: -25mm; /* Pulled significantly closer to overlapping the name */
+}
+
+.sig-name {
+    font-weight: bold;
+    font-size: 14pt;
+    border-top: none; /* Removed black line as requested */
+    margin-top: 5mm;
+    padding-top: 1mm;
+}
+
+.sig-label {
+    font-size: 9pt;
+}
+
+/* Print Specific */
+@media print {
+  body { background: white; }
+  .no-print { display: none !important; }
+  .invoice-container { border: none; padding: 0; }
+}
+
+@media screen and (max-width: 210mm) {
+    .invoice-container {
+        width: 100%;
+        height: auto;
+    }
+}
