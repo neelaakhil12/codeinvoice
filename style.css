@@ -101,7 +101,7 @@ body {
   min-height: 297mm; /* A4 height */
   margin: 0 auto;
   background: white;
-  padding: 15mm;
+  padding: 10mm; /* Reduced from 15mm */
   position: relative;
   border: 1px solid #eee;
 }
@@ -133,12 +133,12 @@ body {
   background-color: var(--primary);
   color: white;
   text-align: center;
-  padding: 5mm;
-  margin-bottom: 10mm;
+  padding: 3mm; /* Reduced from 5mm */
+  margin-bottom: 5mm; /* Reduced from 10mm */
 }
 
 .invoice-title-bar h1 {
-  font-size: 28pt;
+  font-size: 24pt; /* Reduced from 28pt */
   margin: 0;
   letter-spacing: 2px;
   text-transform: uppercase;
@@ -148,7 +148,7 @@ body {
 /* Boxed sections with slanted headers */
 .content-box {
   border: 1px solid var(--border);
-  margin-bottom: 10mm;
+  margin-bottom: 5mm; /* Reduced from 10mm */
   position: relative;
 }
 
@@ -187,7 +187,7 @@ body {
 }
 
 .bill-item {
-  margin-bottom: 4mm;
+  margin-bottom: 2mm; /* Reduced from 4mm */
   border-bottom: 1px solid #eee;
   padding-bottom: 1mm;
   display: flex;
@@ -250,7 +250,7 @@ body {
 
 /* Footer Section */
 .footer-row {
-  margin-top: 20mm;
+  margin-top: 10mm; /* Reduced from 20mm */
   display: flex;
   justify-content: flex-end;
   gap: 20mm;
@@ -286,16 +286,112 @@ body {
     font-size: 9pt;
 }
 
+/* Responsiveness */
+@media screen and (max-width: 768px) {
+    #form-page, #auth-page {
+        padding: 10px;
+    }
+
+    .input-grid {
+        grid-template-columns: 1fr !important;
+    }
+
+    .form-group {
+        grid-column: span 1 !important;
+    }
+
+    .invoice-container {
+        width: 100% !important;
+        max-width: 100%;
+        padding: 5mm;
+        border: none;
+    }
+
+    .header-top {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 5mm;
+    }
+
+    .header-logo img {
+        height: 15mm;
+    }
+
+    .header-top > div:last-child {
+        text-align: center !important;
+    }
+
+    .header-info-row {
+        text-align: center;
+        font-size: 8pt;
+    }
+
+    .header-info-row div {
+        flex-direction: column;
+        align-items: center;
+        gap: 2mm;
+    }
+
+    .invoice-title-bar h1 {
+        font-size: 20pt;
+    }
+
+    .bill-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .bill-grid .col:first-child {
+        border-right: none;
+        border-bottom: 1px solid var(--border);
+    }
+
+    .section-header-slanted {
+        width: 100%;
+        clip-path: none;
+        text-align: center;
+    }
+
+    .price-table th, .price-table td {
+        padding: 2mm;
+        font-size: 8pt;
+    }
+
+    .price-table td:last-child, .price-table th:last-child {
+        width: 25mm;
+    }
+
+    .footer-row {
+        flex-direction: column;
+        align-items: center;
+        gap: 10mm;
+        text-align: center;
+    }
+
+    .signature-box {
+        text-align: center;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .signature-img {
+        margin-right: auto;
+    }
+
+    .stamp-box img {
+        height: 30mm;
+    }
+}
+
 /* Print Specific */
 @media print {
   body { background: white; }
   .no-print { display: none !important; }
-  .invoice-container { border: none; padding: 0; }
-}
-
-@media screen and (max-width: 210mm) {
-    .invoice-container {
-        width: 100%;
-        height: auto;
-    }
+  .invoice-container { 
+      width: 210mm !important; 
+      padding: 15mm; 
+      border: none; 
+      box-shadow: none;
+      margin: 0;
+  }
 }
