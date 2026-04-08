@@ -98,10 +98,9 @@ body {
 /* 📄 EXPORT TEMPLATE (PRECISE MATCH) */
 .invoice-container {
   width: 210mm; /* A4 width */
-  min-height: 297mm; /* A4 height */
   margin: 0 auto;
   background: white;
-  padding: 10mm; /* Reduced from 15mm */
+  padding: 8mm; /* Reduced further from 10mm */
   position: relative;
   border: 1px solid #eee;
 }
@@ -228,7 +227,7 @@ body {
 }
 
 .price-table td {
-  padding: 3mm;
+  padding: 2mm; /* Reduced from 3mm */
   border: 1px solid var(--border);
   font-size: 9pt;
 }
@@ -267,11 +266,11 @@ body {
 }
 
 .signature-img {
-    height: 55mm; /* Increased further to 55mm */
+    height: 35mm; /* Reduced from 55mm to save vertical space */
     display: block;
     margin-left: auto;
     margin-right: -10mm;
-    margin-bottom: -25mm; /* Pulled significantly closer to overlapping the name */
+    margin-bottom: -15mm; /* Adjusted margin for the smaller size */
 }
 
 .sig-name {
