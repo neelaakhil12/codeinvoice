@@ -109,7 +109,7 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  margin-bottom: 5mm;
+  margin-bottom: 2mm; /* Reduced further */
 }
 
 .header-logo img {
@@ -117,9 +117,9 @@ body {
 }
 
 .header-info-row {
-  font-size: 9pt;
-  line-height: 1.4;
-  margin-bottom: 5mm;
+  font-size: 8.5pt; /* Slightly smaller */
+  line-height: 1.2;
+  margin-bottom: 2mm; /* Reduced */
 }
 
 .info-grid {
@@ -132,8 +132,8 @@ body {
   background-color: var(--primary);
   color: white;
   text-align: center;
-  padding: 3mm; /* Reduced from 5mm */
-  margin-bottom: 5mm; /* Reduced from 10mm */
+  padding: 1.5mm; /* Aggressively reduced */
+  margin-bottom: 3mm; /* Aggressively reduced */
 }
 
 .invoice-title-bar h1 {
@@ -186,9 +186,9 @@ body {
 }
 
 .bill-item {
-  margin-bottom: 2mm; /* Reduced from 4mm */
+  margin-bottom: 0.5mm; /* Minimal spacing */
   border-bottom: 1px solid #eee;
-  padding-bottom: 1mm;
+  padding-bottom: 0.5mm;
   display: flex;
   align-items: flex-end;
 }
@@ -227,9 +227,9 @@ body {
 }
 
 .price-table td {
-  padding: 2mm; /* Reduced from 3mm */
+  padding: 1.5mm; /* Aggressively reduced */
   border: 1px solid var(--border);
-  font-size: 9pt;
+  font-size: 8.5pt;
 }
 
 .price-table td:last-child, .price-table th:last-child {
@@ -259,7 +259,7 @@ body {
 }
 
 .stamp-box img {
-    height: 25mm; /* Reduced from 35mm to save space */
+    height: 35mm; /* Restored to large size */
 }
 
 .signature-box {
@@ -268,11 +268,11 @@ body {
 }
 
 .signature-img {
-    height: 35mm; /* Reduced from 55mm to save vertical space */
+    height: 55mm; /* Restored to large size */
     display: block;
     margin-left: auto;
     margin-right: -10mm;
-    margin-bottom: -15mm; /* Adjusted margin for the smaller size */
+    margin-bottom: -25mm; /* Restored position */
 }
 
 .sig-name {
