@@ -249,15 +249,17 @@ body {
 
 /* Footer Section */
 .footer-row {
-  margin-top: 10mm; /* Reduced from 20mm */
+  margin-top: 5mm; /* Reduced from 10mm */
   display: flex;
   justify-content: flex-end;
   gap: 20mm;
   align-items: flex-end;
+  break-inside: avoid; /* Prevent page break between sig and stamp */
+  page-break-inside: avoid;
 }
 
 .stamp-box img {
-    height: 35mm;
+    height: 25mm; /* Reduced from 35mm to save space */
 }
 
 .signature-box {
