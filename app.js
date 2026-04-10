@@ -14,9 +14,18 @@ document.addEventListener('DOMContentLoaded', () => {
     const pdfUploadText = document.getElementById('pdf-upload-text');
     const pdfPagesContainer = document.getElementById('pdf-attachment-pages');
 
-    // Configure PDF.js worker
-    pdfjsLib.GlobalWorkerOptions.workerSrc =
-        'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+    // Configure PDF.js worker securely for edge deployments like Vercel
+    const workerUrl = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+    fetch(workerUrl)
+        .then(response => response.blob())
+        .then(blob => {
+            const blobUrl = URL.createObjectURL(blob);
+            pdfjsLib.GlobalWorkerOptions.workerSrc = blobUrl;
+        })
+        .catch(err => {
+            console.warn('Failed to load PDF worker locally, falling back to CDN', err);
+            pdfjsLib.GlobalWorkerOptions.workerSrc = workerUrl;
+        });
 
     // Credentials
     const VALID_EMAIL = 'harishneela71@gmail.com';
