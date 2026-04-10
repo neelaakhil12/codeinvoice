@@ -9,6 +9,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
 </head>
 <body>
 
@@ -40,6 +41,18 @@
             <div class="form-group">
                 <label>Brand Name</label>
                 <input type="text" id="brand-name" placeholder="Enter Brand Name">
+            </div>
+            <div class="form-group">
+                <label>Client Mobile Number</label>
+                <input type="tel" id="client-mobile" placeholder="Enter Mobile Number">
+            </div>
+            <div class="form-group">
+                <label>Client Email</label>
+                <input type="email" id="client-email" placeholder="Enter Client Email">
+            </div>
+            <div class="form-group">
+                <label>Invoice Date</label>
+                <input type="date" id="invoice-date">
             </div>
             <div class="form-group" style="grid-column: span 2;">
                 <label>Project Requirement</label>
@@ -77,6 +90,15 @@
         <div class="form-group" style="margin-top: 20px;">
             <label>Notes</label>
             <textarea id="notes" placeholder="Any additional notes..."></textarea>
+        </div>
+
+        <!-- 📎 PDF Attachment Upload -->
+        <div class="pdf-upload-box">
+            <label class="pdf-upload-label" for="pdf-attachment">
+                <span class="pdf-upload-icon">📎</span>
+                <span id="pdf-upload-text">Attach a PDF (optional — will appear after the invoice)</span>
+            </label>
+            <input type="file" id="pdf-attachment" accept="application/pdf" style="display:none;">
         </div>
 
         <button class="btn" id="generate-btn" style="width: 100%; margin-top: 20px;">GENERATE INVOICE</button>
@@ -121,6 +143,9 @@
                     <div class="col">
                         <div class="bill-item"><label>Client Name :</label> <span id="p-client-name"></span></div>
                         <div class="bill-item"><label>Brand Name :</label> <span id="p-brand-name"></span></div>
+                        <div class="bill-item"><label>Mobile Number :</label> <span id="p-client-mobile"></span></div>
+                        <div class="bill-item"><label>Email :</label> <span id="p-client-email"></span></div>
+                        <div class="bill-item"><label>Invoice Date :</label> <span id="p-invoice-date"></span></div>
                         <div class="bill-item"><label>Project Requirement :</label> <span id="p-project-req"></span></div>
                     </div>
                     <div class="col">
@@ -159,12 +184,17 @@
             <div class="footer-row">
                 <div class="signature-box">
                     <div id="preview-sig"></div>
+                    <!-- Stamp overlaps the lower half of the signature -->
+                    <div class="stamp-box" id="preview-stamp"></div>
                     <p class="sig-name">N. Harish</p>
                     <p class="sig-label">Authorized Signatory</p>
                 </div>
-                <div class="stamp-box" id="preview-stamp"></div>
             </div>
         </div>
+
+        <!-- 📎 PDF Attachment Pages (rendered below invoice) -->
+        <div id="pdf-attachment-pages" style="display:none; margin-top: 10px;"></div>
+
     </section>
 
     <script src="assets.js"></script>

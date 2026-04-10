@@ -249,36 +249,48 @@ body {
 
 /* Footer Section */
 .footer-row {
-  margin-top: 5mm; /* Reduced from 10mm */
+  margin-top: 5mm;
   display: flex;
   justify-content: flex-end;
-  gap: 2mm; /* Further reduced gap from 5mm to 2mm */
   align-items: flex-end;
-  break-inside: avoid; /* Prevent page break between sig and stamp */
+  position: relative;
+  break-inside: avoid;
   page-break-inside: avoid;
-}
-
-.stamp-box img {
-    height: 35mm; /* Restored to large size */
 }
 
 .signature-box {
     text-align: right;
     min-width: 50mm;
+    position: relative; /* so stamp can be positioned inside */
 }
 
 .signature-img {
-    height: 55mm; /* Restored to large size */
+    height: 55mm;
     display: block;
     margin-left: auto;
     margin-right: -10mm;
-    margin-bottom: -25mm; /* Restored position */
+    margin-bottom: -25mm;
+}
+
+/* Stamp sits half-over the signature */
+.stamp-box {
+    position: absolute;
+    right: -6mm;
+    top: 50%;          /* starts from the vertical midpoint of signature-box */
+    transform: translateY(-10%);
+    pointer-events: none;
+}
+
+.stamp-box img {
+    height: 32mm;
+    opacity: 0.92;
+    display: block;
 }
 
 .sig-name {
     font-weight: bold;
     font-size: 14pt;
-    border-top: none; /* Removed black line as requested */
+    border-top: none;
     margin-top: 5mm;
     padding-top: 1mm;
 }
@@ -303,6 +315,66 @@ body {
 
     /* We keep the invoice-container fixed at 210mm for the PDF, 
        but we allow the parent div in HTML to scroll horizontally on mobile screen */
+}
+
+/* PDF Upload Box */
+.pdf-upload-box {
+    margin-top: 20px;
+    border: 2px dashed var(--primary);
+    border-radius: 8px;
+    padding: 18px 20px;
+    background: #fff8f5;
+    transition: background 0.2s;
+}
+
+.pdf-upload-box:hover {
+    background: #fff0e8;
+}
+
+.pdf-upload-label {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    color: #555;
+    font-weight: 500;
+}
+
+.pdf-upload-icon {
+    font-size: 1.6rem;
+    line-height: 1;
+}
+
+#pdf-upload-text.has-file {
+    color: var(--primary);
+    font-weight: bold;
+}
+
+/* PDF Attachment Pages (preview area) */
+#pdf-attachment-pages {
+    width: 210mm;
+    margin: 0 auto;
+}
+
+.pdf-page-canvas {
+    display: block;
+    width: 100%;
+    margin-bottom: 8px;
+    border: 1px solid #ddd;
+    background: white;
+}
+
+.pdf-attachment-header {
+    width: 210mm;
+    margin: 0 auto 6px;
+    padding: 4px 8px;
+    background: #333;
+    color: white;
+    font-size: 10pt;
+    font-weight: bold;
+    letter-spacing: 1px;
+    text-transform: uppercase;
 }
 
 /* Print Specific */
