@@ -29,7 +29,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Credentials
     const VALID_EMAIL = 'harishneela71@gmail.com';
-    const VALID_PASS = '4666';
+    const VALID_PASS = 'cod@1208';
 
     if (localStorage.getItem('codtech_auth') === 'true') {
         showSection('form');
